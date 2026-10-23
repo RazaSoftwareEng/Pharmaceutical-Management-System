@@ -31,7 +31,7 @@ export default function Header({ onToggleSidebar, onOpenNotifications }) {
     .join('');
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur-xs border-b border-slate-200/90 px-4 sm:px-6 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur-xs border-t-[3px] border-t-brand-red border-b border-slate-200/90 px-4 sm:px-6 flex items-center justify-between gap-4">
       {/* Left: Mobile Toggle & Global Search */}
       <div className="flex items-center gap-3 flex-1 max-w-xl">
         <button

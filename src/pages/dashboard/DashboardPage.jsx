@@ -191,7 +191,7 @@ export default function DashboardPage() {
                 aria-selected={period === key}
                 onClick={() => setPeriod(key)}
                 className={`px-3 py-1.5 rounded-md transition-colors ${
-                  period === key ? 'bg-slate-900 text-white shadow-xs' : 'hover:text-slate-900'
+                  period === key ? 'bg-teal-800 text-white shadow-xs' : 'hover:text-slate-900'
                 }`}
               >
                 {p.label}

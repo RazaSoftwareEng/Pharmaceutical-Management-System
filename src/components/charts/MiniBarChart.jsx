@@ -25,7 +25,7 @@ export default function MiniBarChart({ data = [], height = 220 }) {
           <p className="font-semibold text-slate-200">{activeItem.label}</p>
           <div className="flex items-center gap-3 mt-1">
             <span className="text-teal-400">Sales: {formatCurrency(activeItem.sales)}</span>
-            <span className="text-indigo-300">Purchases: {formatCurrency(activeItem.purchases)}</span>
+            <span className="text-slate-300">Purchases: {formatCurrency(activeItem.purchases)}</span>
           </div>
         </div>
       )}
@@ -51,7 +51,7 @@ export default function MiniBarChart({ data = [], height = 220 }) {
                 />
                 {/* Purchases Bar */}
                 <div
-                  className="w-1/2 max-w-[18px] bg-indigo-600 rounded-t-sm transition-all duration-200 group-hover:bg-indigo-500 group-hover:opacity-90"
+                  className="w-1/2 max-w-[18px] bg-slate-300 rounded-t-sm transition-all duration-200 group-hover:bg-slate-400 group-hover:opacity-90"
                   style={{ height: `${purchasesHeight}px` }}
                 />
               </div>
@@ -70,7 +70,7 @@ export default function MiniBarChart({ data = [], height = 220 }) {
           <span>Sales Invoiced</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-xs bg-indigo-600" />
+          <div className="w-3 h-3 rounded-xs bg-slate-300" />
           <span>Purchases Received</span>
         </div>
       </div>

@@ -1,7 +1,6 @@
 // src/pages/auth/LoginPage.jsx
 import React, { useState } from 'react';
 import {
-  Pill,
   ShieldCheck,
   CalendarClock,
   Wallet,
@@ -15,10 +14,14 @@ import {
   PackageCheck,
   Eye,
   EyeOff,
+  Mail,
+  Lock,
 } from 'lucide-react';
 import { useAuth, DEMO_ACCOUNTS, DEMO_PASSWORD } from '../../context/AuthContext';
 import { getRememberMe, setRememberMe } from '../../lib/supabaseClient';
 import { BRAND_LEGAL_NAME, BRAND_TAGLINE } from '../../config/brand';
+
+const LOGO_SRC = '/star-laboratories-logo.png';
 
 const REMEMBERED_EMAIL_KEY = 'pharmacore_last_email';
 
@@ -46,7 +49,7 @@ const HIGHLIGHTS = [
 ];
 
 const inputCls =
-  'w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white';
+  'w-full h-12 lg:h-11 rounded-xl border border-slate-200 bg-slate-50/60 pl-10 pr-3 text-base lg:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:ring-4 focus:ring-[#E8302A]/15 focus:border-[#E8302A]';
 
 export default function LoginPage() {
   const { signIn, signInAsDemo, signUp, signOut, isDemoAuth, profileError } = useAuth();
@@ -92,31 +95,29 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2 bg-white">
+    <div className="min-h-[100dvh] flex flex-col lg:grid lg:grid-cols-2 bg-gradient-to-b from-[#1C1348] via-[#2E206B] to-[#2E206B] lg:bg-none lg:bg-white">
       {/* Brand panel */}
-      <section className="hidden lg:flex flex-col justify-between bg-slate-950 text-white p-12 relative overflow-hidden">
-        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-teal-500/20 blur-3xl" />
-        <div className="relative flex items-center gap-3">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-teal-600 to-teal-400 grid place-items-center">
-            <Pill className="w-6 h-6 text-slate-950" />
+      <section className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-[#1C1348] via-[#2E206B] to-[#1C1348] text-white p-12 relative overflow-hidden">
+        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-[#E8302A]/25 blur-3xl" />
+        <div className="absolute -bottom-40 -left-24 w-96 h-96 rounded-full bg-[#4A3AA8]/30 blur-3xl" />
+        <div className="relative flex items-center gap-4">
+          <div className="bg-white rounded-xl px-4 py-2.5 shadow-lg shadow-black/30">
+            <img src={LOGO_SRC} alt={BRAND_LEGAL_NAME} width="160" height="80" className="h-16 w-auto" />
           </div>
-          <div>
-            <p className="font-bold text-lg tracking-tight">{BRAND_LEGAL_NAME}</p>
-            <p className="text-xs text-slate-400">{BRAND_TAGLINE}</p>
-          </div>
+          <p className="text-sm font-medium text-slate-300">{BRAND_TAGLINE}</p>
         </div>
 
         <div className="relative">
           <h1 className="text-3xl font-bold leading-tight tracking-tight">
             Stock, sales and recovery
             <br />
-            <span className="text-teal-400">in one place.</span>
+            <span className="text-[#FF6A5F]">in one place.</span>
           </h1>
           <ul className="mt-10 space-y-6">
             {HIGHLIGHTS.map(({ icon: Icon, title, text }) => (
               <li key={title} className="flex gap-4">
                 <span className="w-10 h-10 rounded-lg bg-white/5 ring-1 ring-white/10 grid place-items-center shrink-0">
-                  <Icon className="w-5 h-5 text-teal-400" />
+                  <Icon className="w-5 h-5 text-[#FF6A5F]" />
                 </span>
                 <div>
                   <p className="font-semibold text-sm">{title}</p>
@@ -130,18 +131,27 @@ export default function LoginPage() {
         <p className="relative text-xs text-slate-500">WHO-cGMP · FEFO · DRAP batch traceability</p>
       </section>
 
-      {/* Form panel */}
-      <section className="flex items-center justify-center p-6 sm:p-12 bg-slate-50 lg:bg-white">
-        <div className="w-full max-w-md">
-          <div className="lg:hidden flex items-center gap-2.5 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-teal-600 grid place-items-center">
-              <Pill className="w-5 h-5 text-white" />
-            </div>
-            <p className="font-bold text-lg">{BRAND_LEGAL_NAME}</p>
+      {/* Mobile hero */}
+      <section className="lg:hidden relative overflow-hidden px-6 pt-10 pb-14 text-white text-center">
+        <div className="absolute -top-24 -right-20 w-72 h-72 rounded-full bg-[#E8302A]/30 blur-3xl" />
+        <div className="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-[#4A3AA8]/40 blur-3xl" />
+        <div className="relative">
+          <div className="inline-block bg-white rounded-2xl px-5 py-3 shadow-xl shadow-black/30">
+            <img src={LOGO_SRC} alt={BRAND_LEGAL_NAME} width="160" height="80" className="h-16 w-auto" />
           </div>
+          <h1 className="mt-6 whitespace-nowrap text-[clamp(13px,4.2vw,22px)] font-bold leading-tight tracking-tight">
+            Stock, sales and recovery <span className="text-[#FF6A5F]">in one place.</span>
+          </h1>
+        </div>
+      </section>
 
-          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
-            {mode === 'signup' ? 'Create your account' : 'Sign in'}
+      {/* Form panel: rounded sheet over the hero on mobile, plain column on desktop */}
+      <section className="relative -mt-8 lg:mt-0 flex-1 flex lg:items-center justify-center rounded-t-[28px] lg:rounded-none bg-white px-6 pt-8 pb-10 sm:px-12 lg:p-12 shadow-[0_-12px_40px_rgba(0,0,0,0.25)] lg:shadow-none">
+        <div className="w-full max-w-md">
+          <div className="lg:hidden mx-auto -mt-4 mb-6 h-1 w-10 rounded-full bg-slate-200" aria-hidden="true" />
+
+          <h2 className="text-2xl font-bold text-[#2E206B] tracking-tight">
+            {mode === 'signup' ? 'Create your account' : 'Welcome back'}
           </h2>
           <p className="mt-1.5 text-sm text-slate-500">
             {isDemoAuth
@@ -168,9 +178,9 @@ export default function LoginPage() {
                   <button
                     key={acc.id}
                     onClick={() => signInAsDemo(acc.id)}
-                    className="group flex items-center gap-3 rounded-xl ring-1 ring-slate-200 bg-white px-4 py-3 text-left hover:ring-teal-400 hover:shadow-sm transition"
+                    className="group flex items-center gap-3 rounded-xl ring-1 ring-slate-200 bg-white px-4 py-3 text-left hover:ring-[#E8302A] hover:shadow-sm transition"
                   >
-                    <span className="w-9 h-9 rounded-lg bg-teal-50 text-teal-700 grid place-items-center shrink-0">
+                    <span className="w-9 h-9 rounded-lg bg-[#2E206B]/10 text-[#2E206B] grid place-items-center shrink-0">
                       <Icon className="w-[18px] h-[18px]" />
                     </span>
                     <span className="flex-1 min-w-0">
@@ -179,7 +189,7 @@ export default function LoginPage() {
                         {acc.fullName} · {acc.designation}
                       </span>
                     </span>
-                    <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-teal-600" />
+                    <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-[#E8302A]" />
                   </button>
                 );
               })}
@@ -199,7 +209,9 @@ export default function LoginPage() {
             )}
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1.5">E-mail</label>
-              <input
+              <div className="relative">
+                <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
                 type="email"
                 required
                 name="email"
@@ -208,11 +220,13 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={inputCls}
-              />
+                />
+              </div>
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1.5">Password</label>
               <div className="relative">
+                <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
@@ -228,7 +242,7 @@ export default function LoginPage() {
                   onClick={() => setShowPassword((v) => !v)}
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
                   title={showPassword ? 'Hide password' : 'Show password'}
-                  className="absolute inset-y-0 right-0 px-3 grid place-items-center text-slate-400 hover:text-slate-700"
+                  className="absolute inset-y-0 right-0 px-3.5 grid place-items-center text-slate-400 hover:text-[#2E206B]"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -236,12 +250,12 @@ export default function LoginPage() {
             </div>
 
             {mode === 'signin' && (
-              <label className="flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none">
+              <label className="flex items-center gap-2.5 py-1 text-sm lg:text-xs text-slate-600 cursor-pointer select-none">
                 <input
                   type="checkbox"
                   checked={remember}
                   onChange={(e) => setRemember(e.target.checked)}
-                  className="rounded border-slate-300 text-teal-600 focus:ring-teal-500"
+                  className="w-4 h-4 rounded border-slate-300 accent-[#E8302A] text-[#E8302A] focus:ring-[#E8302A]"
                 />
                 Remember me on this device
               </label>
@@ -253,10 +267,11 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={busy}
-              className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white text-sm font-semibold py-2.5 disabled:opacity-60"
+              className="w-full h-12 lg:h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#E8302A] to-[#D42620] hover:from-[#D42620] hover:to-[#B01F1A] active:scale-[0.99] transition text-white text-base lg:text-sm font-semibold shadow-lg shadow-[#E8302A]/30 disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2E206B]"
             >
               {busy && <Loader2 className="w-4 h-4 animate-spin" />}
               {mode === 'signup' ? 'Create account' : 'Sign in'}
+              {!busy && <ArrowRight className="w-4 h-4" />}
             </button>
           </form>
 
@@ -265,6 +280,20 @@ export default function LoginPage() {
               Forgot your password or need an account? Contact your administrator.
             </p>
           )}
+
+          <footer className="mt-10 pt-5 border-t border-slate-100 text-center">
+            <p className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-500">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#2E206B]" />
+              Secure, encrypted sign-in
+            </p>
+            <p className="mt-1.5 text-[11px] text-slate-400">
+              © {new Date().getFullYear()} {BRAND_LEGAL_NAME} · Serving healthcare since 1960
+            </p>
+            <div
+              className="mt-4 mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-[#2E206B] via-[#E8302A] to-[#2E206B]"
+              aria-hidden="true"
+            />
+          </footer>
         </div>
       </section>
     </div>

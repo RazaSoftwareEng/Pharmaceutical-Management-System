@@ -72,8 +72,8 @@ export default function MiniAreaChart({ data = [], height = 220, emptyMessage = 
       >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0d9488" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#0d9488" stopOpacity="0" />
+            <stop offset="0%" stopColor="#3f3087" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#3f3087" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -91,7 +91,7 @@ export default function MiniAreaChart({ data = [], height = 220, emptyMessage = 
         })}
 
         <path d={areaPath} fill={`url(#${gradientId})`} />
-        <path d={linePath} fill="none" stroke="#0d9488" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+        <path d={linePath} fill="none" stroke="#2e206b" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
 
         {active && (
           <line x1={active.x} y1={padTop} x2={active.x} y2={baseY} stroke="#94a3b8" strokeDasharray="3 3" />
@@ -105,7 +105,7 @@ export default function MiniAreaChart({ data = [], height = 220, emptyMessage = 
                 cy={p.y}
                 r={i === activeIdx ? 5 : 3}
                 fill="#ffffff"
-                stroke="#0f766e"
+                stroke="#2e206b"
                 strokeWidth="2"
               />
             )}

@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 
 const COLORS = [
-  '#0d9488', // teal-600
-  '#4f46e5', // indigo-600
+  '#2e206b', // brand navy
+  '#e8302a', // brand red
   '#0284c7', // sky-600
-  '#e11d48', // rose-600
   '#d97706', // amber-600
   '#16a34a', // green-600
-  '#7c3aed', // violet-600
+  '#8c7cca', // navy-400
+  '#db2777', // pink-600
   '#64748b', // slate-500
 ];
 

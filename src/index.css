@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+/*
+ * Star Laboratories brand theme.
+ * The app's primary colour is written as `teal-*` throughout the codebase, so
+ * the palette is remapped here to the logo navy (#2E206B = 800). Red (#E8302A)
+ * is the brand accent; rose/red utilities keep their meaning (danger, expired).
+ */
+@theme {
+  --color-teal-50: #f4f2fb;
+  --color-teal-100: #e8e4f6;
+  --color-teal-200: #d1c9ec;
+  --color-teal-300: #b1a5de;
+  --color-teal-400: #8c7cca;
+  --color-teal-500: #6a58b5;
+  --color-teal-600: #52419e;
+  --color-teal-700: #3f3087;
+  --color-teal-800: #2e206b;
+  --color-teal-900: #241a55;
+  --color-teal-950: #170f3a;
+
+  --color-brand-red: #e8302a;
+  --color-brand-red-dark: #c8241f;
+  --color-brand-navy: #2e206b;
+}
+
 @layer base {
   body {
     background-color: #f8fafc;

@@ -1,7 +1,7 @@
 // src/components/layout/Sidebar.jsx
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { LayoutDashboard, ChevronDown, X, Pill } from 'lucide-react';
+import { LayoutDashboard, ChevronDown, X } from 'lucide-react';
 import { usePharma } from '../../context/PharmaContext';
 import { NAV_GROUPS } from '../../config/navigation';
 import { canAccess } from '../../config/permissions';
@@ -89,19 +89,15 @@ export default function Sidebar({ isOpen, onClose }) {
         }`}
       >
         {/* Brand */}
-        <div className="h-16 flex items-center justify-between px-4 bg-slate-950 text-white shrink-0">
+        <div className="h-16 flex items-center justify-between px-4 bg-white border-t-[3px] border-t-brand-red border-b border-slate-200/90 shrink-0">
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-teal-600 to-teal-400 grid place-items-center shadow-md shadow-teal-900/40 shrink-0">
-              <Pill className="w-5 h-5 text-slate-950" />
-            </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5">
-                <span className="font-bold text-sm tracking-tight truncate">{companyName}</span>
-              </div>
-              <p className="text-[10px] text-slate-400 font-medium truncate">{BRAND_TAGLINE}</p>
+            <img src="/star-laboratories-logo.png" alt={companyName} width="88" height="44" className="h-11 w-auto shrink-0" />
+            <div className="min-w-0 border-l border-slate-200 pl-2.5">
+              <p className="text-[11px] font-bold text-teal-800 leading-tight truncate">{BRAND_TAGLINE}</p>
+              <p className="text-[10px] text-slate-400 leading-tight truncate">{companyName}</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 lg:hidden">
+          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 lg:hidden">
             <X className="w-5 h-5" />
           </button>
         </div>
