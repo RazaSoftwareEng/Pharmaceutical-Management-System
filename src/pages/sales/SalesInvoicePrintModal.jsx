@@ -6,12 +6,13 @@ import Badge from '../../components/common/Badge';
 import { formatCurrency, buildWhatsAppLink } from '../../services/pharmaService';
 import { Printer, Pill, MessageCircle } from 'lucide-react';
 import { usePharma } from '../../context/PharmaContext';
+import { BRAND_NAME } from '../../config/brand';
 
 export default function SalesInvoicePrintModal({ isOpen, onClose, invoice }) {
   const { data } = usePharma();
   if (!invoice) return null;
 
-  const company = data.companyProfile;
+  const company = { ...data.companyProfile, name: data.companyProfile.name || BRAND_NAME };
   const customer = data.customers.find((c) => c.id === invoice.customerId);
   const salesRep = data.employees.find((e) => e.id === (invoice.salesRepId || customer?.salesRepId));
   const hasBonus = invoice.items.some((it) => it.bonusQty > 0);

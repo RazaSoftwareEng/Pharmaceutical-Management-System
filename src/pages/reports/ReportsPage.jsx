@@ -18,6 +18,7 @@ import {
   exportToCSV,
 } from '../../services/pharmaService';
 import Button from '../../components/common/Button';
+import { BRAND_NAME } from '../../config/brand';
 
 export default function ReportsPage() {
   const { data, metrics, currentWarehouseId } = usePharma();
@@ -404,7 +405,7 @@ export default function ReportsPage() {
 
         {/* Footer print signature line */}
         <div className="pt-8 mt-6 border-t border-slate-200 flex justify-between text-[11px] text-slate-400">
-          <span>Official PharmaCore ERP Audit Schedule</span>
+          <span>Official {BRAND_NAME} Audit Schedule</span>
           <span>Approved for Regulatory Submission</span>
         </div>
       </div>

@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { useAuth, DEMO_ACCOUNTS, DEMO_PASSWORD } from '../../context/AuthContext';
 import { getRememberMe, setRememberMe } from '../../lib/supabaseClient';
+import { BRAND_NAME, BRAND_TAGLINE } from '../../config/brand';
 
 const REMEMBERED_EMAIL_KEY = 'pharmacore_last_email';
 
@@ -100,8 +101,8 @@ export default function LoginPage() {
             <Pill className="w-6 h-6 text-slate-950" />
           </div>
           <div>
-            <p className="font-bold text-lg tracking-tight">PharmaCore ERP</p>
-            <p className="text-xs text-slate-400">For pharmaceutical manufacturers & distributors</p>
+            <p className="font-bold text-lg tracking-tight">{BRAND_NAME}</p>
+            <p className="text-xs text-slate-400">{BRAND_TAGLINE}</p>
           </div>
         </div>
 
@@ -136,7 +137,7 @@ export default function LoginPage() {
             <div className="w-10 h-10 rounded-xl bg-teal-600 grid place-items-center">
               <Pill className="w-5 h-5 text-white" />
             </div>
-            <p className="font-bold text-lg">PharmaCore ERP</p>
+            <p className="font-bold text-lg">{BRAND_NAME}</p>
           </div>
 
           <h2 className="text-2xl font-bold text-slate-900 tracking-tight">

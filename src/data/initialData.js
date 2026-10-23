@@ -2,8 +2,8 @@
 // Enterprise Pharmaceutical Management System - Central Mock Dataset
 
 export const initialCompanyProfile = {
-  name: "PharmaCore Life Sciences Ltd.",
-  tradeName: "PharmaCore Pharmaceuticals",
+  name: "Star Laboratories",
+  tradeName: "Star Laboratories",
   registrationNumber: "DRAP-MFG-00892-A",
   drugLicenseNumber: "DL-2021-9984-MFG",
   taxId: "TX-9948201-8",

@@ -5,6 +5,7 @@ import { LayoutDashboard, ChevronDown, X, Pill } from 'lucide-react';
 import { usePharma } from '../../context/PharmaContext';
 import { NAV_GROUPS } from '../../config/navigation';
 import { canAccess } from '../../config/permissions';
+import { BRAND_NAME, BRAND_TAGLINE } from '../../config/brand';
 
 const ACCENTS = {
   teal: { icon: 'text-teal-600', rail: 'border-teal-100' },
@@ -37,7 +38,7 @@ function Count({ kind, value, suffix = '' }) {
 
 export default function Sidebar({ isOpen, onClose }) {
   const { metrics, data, currentUserRole } = usePharma();
-  const companyName = data.companyProfile.tradeName || data.companyProfile.name;
+  const companyName = data.companyProfile.tradeName || data.companyProfile.name || BRAND_NAME;
   const location = useLocation();
 
   const badges = {
@@ -95,10 +96,9 @@ export default function Sidebar({ isOpen, onClose }) {
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className="font-bold text-sm tracking-tight">PharmaCore</span>
-                <span className="text-[10px] bg-teal-500/20 text-teal-300 px-1.5 rounded font-mono font-bold">ERP</span>
+                <span className="font-bold text-sm tracking-tight truncate">{companyName}</span>
               </div>
-              <p className="text-[10px] text-slate-400 font-medium truncate">{companyName}</p>
+              <p className="text-[10px] text-slate-400 font-medium truncate">{BRAND_TAGLINE}</p>
             </div>
           </div>
           <button onClick={onClose} className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 lg:hidden">

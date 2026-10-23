@@ -1,6 +1,7 @@
 // src/services/storageService.js
 import * as initialData from '../data/initialData';
 import { enrichSeed } from '../data/commercialSeed';
+import { BRAND_NAME } from '../config/brand';
 
 const STORAGE_PREFIX = 'pharmacore_erp_v3_';
 
@@ -71,6 +72,8 @@ export function getEmptyData() {
   return {
     companyProfile: {
       ...blankProfile,
+      name: BRAND_NAME,
+      tradeName: BRAND_NAME,
       country: 'Pakistan',
       currency: 'PKR',
       currencySymbol: 'Rs.',
