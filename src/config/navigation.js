@@ -1,0 +1,102 @@
+// src/config/navigation.js
+import {
+  Pill,
+  Layers,
+  ArrowLeftRight,
+  Building2,
+  Truck,
+  ShoppingCart,
+  PackageCheck,
+  Users,
+  FileText,
+  Receipt,
+  RotateCcw,
+  Wallet,
+  ReceiptText,
+  BarChart3,
+  UserCheck,
+  Bell,
+  Settings,
+  Package,
+  TrendingUp,
+  ClipboardCheck,
+  Target,
+  HandCoins,
+} from 'lucide-react';
+
+// `badge` names a counter the sidebar computes from live metrics.
+export const NAV_GROUPS = [
+  {
+    key: 'inventory',
+    label: 'Inventory & Batches',
+    icon: Package,
+    accent: 'teal',
+    badge: 'nearExpiry',
+    items: [
+      { to: '/medicines', label: 'Medicines Catalog', icon: Pill, badge: 'lowStock' },
+      { to: '/batches', label: 'Batch Management (FEFO)', icon: Layers },
+      { to: '/inventory/stock', label: 'Stock Overview', icon: Package },
+      { to: '/inventory/movements', label: 'Stock Movements', icon: ArrowLeftRight },
+      { to: '/inventory/count', label: 'Stock Count & Audit', icon: ClipboardCheck },
+      { to: '/warehouses', label: 'Warehouses & Depots', icon: Building2 },
+    ],
+  },
+  {
+    key: 'procurement',
+    label: 'Procurement',
+    icon: Truck,
+    accent: 'indigo',
+    badge: 'pendingPO',
+    items: [
+      { to: '/suppliers', label: 'Suppliers', icon: Truck },
+      { to: '/purchases/orders', label: 'Purchase Orders', icon: ShoppingCart, badge: 'pendingPO' },
+      { to: '/purchases/receiving', label: 'Goods Receiving (GRN)', icon: PackageCheck },
+    ],
+  },
+  {
+    key: 'sales',
+    label: 'Sales & Distribution',
+    icon: TrendingUp,
+    accent: 'emerald',
+    items: [
+      { to: '/customers', label: 'Customers & Chemists', icon: Users },
+      { to: '/sales/orders', label: 'Sales Orders', icon: FileText },
+      { to: '/sales/invoices', label: 'Sales Tax Invoices', icon: Receipt },
+      { to: '/sales/returns', label: 'Returns & Recalls', icon: RotateCcw },
+      { to: '/sales/team', label: 'Sales Team & Targets', icon: Target },
+    ],
+  },
+  {
+    key: 'finance',
+    label: 'Accounts & Recovery',
+    icon: Wallet,
+    accent: 'blue',
+    badge: 'overdue',
+    items: [
+      { to: '/accounts/recovery', label: 'Recovery & Aging', icon: HandCoins, badge: 'overdue' },
+      { to: '/accounts', label: 'Accounts & Ledger', icon: Wallet },
+      { to: '/accounts/expenses', label: 'Expenses', icon: ReceiptText },
+    ],
+  },
+  {
+    key: 'intelligence',
+    label: 'Reports & People',
+    icon: BarChart3,
+    accent: 'purple',
+    items: [
+      { to: '/reports', label: 'Reports & Analytics', icon: BarChart3 },
+      { to: '/employees', label: 'Employee Directory', icon: UserCheck },
+    ],
+  },
+  {
+    key: 'admin',
+    label: 'Administration',
+    icon: Settings,
+    accent: 'slate',
+    badge: 'unread',
+    items: [
+      { to: '/notifications', label: 'Notification Center', icon: Bell, badge: 'unread' },
+      { to: '/settings', label: 'System Settings', icon: Settings },
+    ],
+  },
+];
